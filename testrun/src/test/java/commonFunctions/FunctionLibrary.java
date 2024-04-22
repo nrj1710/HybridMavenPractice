@@ -31,8 +31,10 @@ public class FunctionLibrary {
 		}
 		return driver;
 	}
-	public  void takeurl() {
+	public static void takeurl() {
 		driver.get(popcorn.getProperty("Url"));
+		driver.manage().window().minimize();
 	}
+	
 
 }

@@ -17,20 +17,20 @@ Workbook wb;
 //XSSFSheet sheet;
 
 public ExcelFileUtil(String Excelpath) throws Exception {
-	FileInputStream fis =new FileInputStream(Excelpath);
+	FileInputStream fis =new FileInputStream(Excelpath);              //constructor for reading excel path
 	wb= WorkbookFactory.create(fis);
 }
-public int rowcount(String Sheetnamae) {
-	return wb.getSheet(Sheetnamae).getLastRowNum();
+public int rowcount(String sheetname) {                                       
+	return wb.getSheet(sheetname).getLastRowNum();
 	
 }
-public String getclldata(String Sheetname, int row, int col) {
-	String data="";
-	if(wb.getSheet(Sheetname).getRow(row).getCell(col).getCellType()==CellType.NUMERIC) {
-		int celldata =(int) wb.getSheet(Sheetname).getRow(row).getCell(col).getNumericCellValue();
+public String getcelldata(String sheetname, int row, int col) {
+	String data= "";
+	if(wb.getSheet(sheetname).getRow(row).getCell(col).getCellType()==CellType.NUMERIC) {
+		int celldata =(int) wb.getSheet(sheetname).getRow(row).getCell(col).getNumericCellValue();
 		data= String.valueOf(celldata);
 	}else {
-		data= wb.getSheet(Sheetname).getRow(row).getCell(col).getStringCellValue();
+		data= wb.getSheet(sheetname).getRow(row).getCell(col).getStringCellValue();
 	}
 	return data;
 }
