@@ -3,7 +3,10 @@ package commonFunctions;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -35,6 +38,11 @@ public class FunctionLibrary {
 		driver.get(popcorn.getProperty("Url"));
 		driver.manage().window().minimize();
 	}
-	
+	public static String generateDate()
+	{
+		Date date = new Date();
+		DateFormat df = new SimpleDateFormat("YYYY_MM_dd");
+		return df.format(date);
+	}
 
 }

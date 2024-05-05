@@ -1,6 +1,9 @@
 package driverFactory;
 import org.openqa.selenium.WebDriver;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+
 import Utilities.ExcelFileUtil;
 import commonFunctions.FunctionLibrary;
 
@@ -8,7 +11,8 @@ public class DriverScript {
 	public static WebDriver driver;
 	String inputpath="./fileInput/controler.xlsx";
 	String outputpath="./fileOutput/Result_controller.xlsx";
-	//ExtentTest logger;
+	ExtentTest logger;
+	ExtentReports report;
 	
 	public void starttest() throws Exception {
 		String Modulestatus ="";
@@ -18,6 +22,8 @@ public class DriverScript {
 		for(int i=1; i<=xl.rowcount(TestCases); i++) {
 		if(xl.getcelldata(TestCases, i, 2).equalsIgnoreCase("Y")) {
 		String TCModule=xl.getcelldata(TestCases, i, 1);
+		report= new ExtentReports("./target/Reports"+TCModule+FunctionLibrary.generateDate()+".html");
+		logger=report.startTest(TCModule);
 			for(int j=1; j<=xl.rowcount(TestCases); j++) {
 				
 				String Description=xl.getcelldata(TCModule, j, 0);
